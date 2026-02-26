@@ -1,0 +1,25 @@
+<div>
+  <p>
+    <strong>Name:</strong>
+    <%= @list.name %>
+  </p>
+</div>
+
+<div>
+  <%= link_to "Back to lists", lists_path %>
+</div>
+
+<% @list.bookmarks.each do |bookmark| %>
+  <div class="movie-card">
+    <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title %>
+    <div class="movie-card-infos">
+      <h2><%= bookmark.movie.title %></h2>
+      <p><%= bookmark.comment %></p>
+
+      <%= link_to "Supprimer",
+                  bookmark_path(bookmark),
+                  data: { turbo_method: :delete, turbo_confirm: "Voulez-vous vraiment retirer ce film ?" },
+                  class: "text-danger" %>
+    </div>
+  </div>
+<% end %>

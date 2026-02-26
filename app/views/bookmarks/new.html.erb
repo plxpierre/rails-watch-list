@@ -1,0 +1,5 @@
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, prompt: "Choisissez un film", collection: Movie.all.order(:title) %>
+  <%= f.input :comment, placeholder: "Pourquoi ce film ?" %>
+  <%= f.submit "Ajouter au signet", class: "btn btn-primary" %>
+<% end %>
