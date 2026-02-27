@@ -10,3 +10,68 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.card-movie-img {
+  height: 250px;
+  object-fit: cover; // Pour que l'image remplisse bien le haut de la carte sans se déformer
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.list-card {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease; /* Petit effet au survol */
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// Style spécifique pour les formulaires (New List / New Bookmark)
+.form-inputs {
+  .form-label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      border-color: #198754; // Vert Bootstrap pour matcher ton bouton success
+      box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+    }
+  }
+}
+
+// Optionnel : un fond légèrement gris pour la page pour faire ressortir la carte blanche
+body {
+  background-color: #f8f9fa;
+}

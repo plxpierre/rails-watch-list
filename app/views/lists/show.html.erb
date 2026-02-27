@@ -1,25 +1,66 @@
-<div>
-  <p>
-    <strong>Name:</strong>
-    <%= @list.name %>
-  </p>
-</div>
+<%# <div> %>
+  <%# <p> %>
+    <%# <strong>Name:</strong> %>
+    <%# <%= @list.name %>
+  <%# </p> %>
+<%# </div> %>
 
-<div>
-  <%= link_to "Back to lists", lists_path %>
-</div>
+<%# <div> %>
+  <%# <%= link_to "Back to lists", lists_path %>
+<%# </div> %>
 
-<% @list.bookmarks.each do |bookmark| %>
-  <div class="movie-card">
-    <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title %>
-    <div class="movie-card-infos">
-      <h2><%= bookmark.movie.title %></h2>
-      <p><%= bookmark.comment %></p>
+<%# <% @list.bookmarks.each do |bookmark| %> 
+  <%# <div class="movie-card"> %>
+    <%# <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title %>
+    <%# <div class="movie-card-infos"> %>
+      <%# <h2><%= bookmark.movie.title</h2>  %>
+      <%# <p><%= bookmark.comment</p> %>
 
-      <%= link_to "Supprimer",
-                  bookmark_path(bookmark),
-                  data: { turbo_method: :delete, turbo_confirm: "Voulez-vous vraiment retirer ce film ?" },
-                  class: "text-danger" %>
-    </div>
+      <%# <%= link_to "Supprimer", %>
+                  <%# # bookmark_path(bookmark), %>
+                  <%# # data: { turbo_method: :delete, turbo_confirm: "Voulez-vous vraiment retirer ce film ?" }, %>
+                  <%# # class: "text-danger" %>
+     <%# </div> %>
+   <%# </div> %>
+<%# <% end %>
+
+<div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @list.movies.any? ? @list.movies.first.poster_url : "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba" %>');">
+  <div class="container text-center text-white">
+    <h1 class="display-3 fw-bold"><%= @list.name %></h1>
+    <span class="badge bg-success rounded-pill px-3"><%= @list.bookmarks.count %> films</span>
   </div>
-<% end %>
+</div>
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <%= link_to lists_path, class: "btn btn-outline-secondary rounded-pill" do %>
+      <i class="fa-solid fa-arrow-left"></i> Back to lists
+    <% end %>
+    <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-success rounded-pill px-4" %>
+  </div>
+
+  <div class="row">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="col-12 col-sm-6 col-lg-4 mb-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+          <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, class: "card-img-top card-movie-img" %>
+          <div class="card-body">
+            <h5 class="card-title fw-bold"><%= bookmark.movie.title %></h5>
+            <p class="card-text text-muted fst-italic">"<%= bookmark.comment %>"</p>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <small class="text-warning">
+                <i class="fa-solid fa-star"></i> <%= bookmark.movie.rating %>
+              </small>
+              <%= link_to bookmark_path(bookmark),
+                          data: { turbo_method: :delete, turbo_confirm: "Retirer #{bookmark.movie.title} de la liste ?" },
+                          class: "text-danger text-decoration-none fw-bold" do %>
+                <i class="fa-solid fa-trash-can"></i> Delete
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
