@@ -9,7 +9,7 @@
   <%# <%= link_to "Back to lists", lists_path %>
 <%# </div> %>
 
-<%# <% @list.bookmarks.each do |bookmark| %> 
+<%# <% @list.bookmarks.each do |bookmark| %>
   <%# <div class="movie-card"> %>
     <%# <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title %>
     <%# <div class="movie-card-infos"> %>
@@ -33,7 +33,7 @@
 
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <%= link_to lists_path, class: "btn btn-outline-secondary rounded-pill" do %>
+    <%= link_to root_path, class: "btn btn-outline-secondary rounded-pill" do %>
       <i class="fa-solid fa-arrow-left"></i> Back to lists
     <% end %>
     <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-success rounded-pill px-4" %>
